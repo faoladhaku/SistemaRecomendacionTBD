@@ -3,4 +3,20 @@ from django.shortcuts import render
 
 def index(request):
     return render(request,'recomendator/index.html')
+
+
+
+
+##############################################
+#### Algoritmos #############################
+
+
+
+
+
+
+##############################################
+def Controlador_respuesta(request):
+
+	return render(request,'recomendator/Respuesta.html')
     
