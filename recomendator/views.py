@@ -259,7 +259,7 @@ def Controlador_respuesta(request):
     ###orquestor
 
     #Selecting database
-    database_id = int(input())
+    database_id = int(request.GET['DB'])
     if(database_id==1):
         preprocessing_path = "little_bd/laboratorio1.csv"
         prepath = "little_bd/"
@@ -276,7 +276,7 @@ def Controlador_respuesta(request):
         path = "100k/ratings.csv"
 
     #type of use of the bd(chunks, not chunk)
-    bd_method_id = int(input())
+    bd_method_id = int(request.GET['Carga'])
     if(bd_method_id==1):
         a = datetime.datetime.now()
         rating = load_bd_method1(path)
@@ -289,23 +289,23 @@ def Controlador_respuesta(request):
         print("my time to load the bd with the method 2: ",b-a)
 
     #Distance or Recomendation
-    id_action = int(input())
+    id_action = int(request.GET['Operacion'])
     if(id_action==1):
         #type of distance
-        id_distance = int(input())
-        id_user1= int(input("user 1: "))
-        id_user2= int(input("user 2: "))
+        id_distance = int(request.GET['Algo_distancia'])
+        id_user1= int(request.GET['usuario1'])
+        id_user2= int(request.GET['usuario2'])
         a = datetime.datetime.now()
-        simple_distance(id_user1,id_user2,id_distance,rating)
+        simple_distance(id_user1,id_user2,id_distance,rating,False)
         b = datetime.datetime.now()
         print("my time to find intersection and to calculate a simple distance: ",b-a)
     elif(id_action==2):
         #type of distance
-        id_distance = int(input())
-        id_user = int(input("set user: "))
-        id_neighbors = int(input("set number of neighbors: "))
+        id_distance = int(request.GET['knn_distancia'])
+        id_user = int(request.GET['usuario'])
+        id_neighbors = int(request.GET['nvecinos'])
         #id of the movie
-        id_item_search = int(input("Select the id: "))
+        id_item_search = int(request.GET['ID_pelicula'])
         recomendation(id_user,id_neighbors,id_distance,id_item_search,rating)
     return render(request,'recomendator/Respuesta.html')
     
