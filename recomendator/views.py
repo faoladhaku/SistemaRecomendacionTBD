@@ -309,3 +309,19 @@ def Controlador_respuesta(request):
         recomendation(id_user,id_neighbors,id_distance,id_item_search,rating)
     return render(request,'recomendator/Respuesta.html')
     
+def test(request):
+	print(request.GET['DB']) #Seleccione la base de datos
+	print(request.GET['Carga'] )# Seleccionar como desea cargar la base de datos
+	print(request.GET['Operacion']) # Que desa hacer
+
+	print(request.GET['Algo_distancia']) # Seleccionar algoritmo 
+	print(request.GET['usuario1']) #Usuario 1 
+	print(request.GET['usuario2']) #Usuario 2 
+
+	print(request.GET['knn_distancia']) #Con que distancia desea calcular la KNN
+	print(request.GET['usuario']) #Selecciona el usuario
+	print(request.GET['nvecinos']) #Seleccion el numero de vecinos 
+	print(request.GET['ID_pelicula']) #Seleccione el ID de la pelicula
+
+	return render(request,'recomendator/Respuesta.html')
+    

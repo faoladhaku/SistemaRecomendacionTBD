@@ -1,3 +1,148 @@
+
+{% extends 'recomendator/respuesta.html' %}
+
+
+
+{% block services %}
+
+<script type="text/javascript">
+	function habilitar(){
+
+		
+		var item = document.getElementById('Tipo');
+
+		if(item.value == '1' ){
+
+			document.getElementById ('distancia').hidden=false;
+			document.getElementById ('Recomendacion').hidden=true;
+
+		}else if(item.value == '2'){
+			document.getElementById ('distancia').hidden=true;
+			document.getElementById ('Recomendacion').hidden=false;
+		}
+
+
+		
+		
+	}
+
+
+
+
+
+</script>
+
+	<section id = "portfolio">
+		<div class="container wow fadeInUp">
+			<dir class="section-header">	
+				<h3 class="section-title">Datos</h3>
+				<div class = "row">
+					<div class = "portfolio-item filter-app">
+						<h8>Seleccione la Base de datos</h8>
+						<form action="{% url 'Respuesta' %}">
+										
+							<select name="DB" id="" class="custom-select">
+						        <option value="1">1.-Practice Database</option>
+						        <option value="2">2.-Large Practice Database</option>
+						        <option value="4">3.-Movie Lens 100k database</option>
+						    </select>
+						    <h8>Seleccionar como desea cargar la base de datos</h8>
+							    <select name="Carga" id="" class="custom-select">
+							        <option value="1">1.-Using Chunks</option>
+							        <option value="2">2.-Without Chunks</option>
+							    </select>
+							<h8> Que desea hacer </h8>
+							 
+							 	<select name="Operacion" id="Tipo" class="custom-select"  onchange="habilitar()">
+							 		<option value=""></option>
+							        <option value="1">1.-Calculate a distance</option>
+							        <option value="2">2.-Make a recomendation</option>
+						    	</select>
+						
+						    <br>
+						        <!--calcular una distancia -->
+
+						    <div id = "distancia" hidden="true">
+						    			<h8> Seleccionar el algoritmo </h8>
+							   			<select name="Algo_distancia" id=""  class="custom-select">
+							   				<option value=""> </option>
+									        <option value="1">1.-Calculate Manhattan</option>
+									        <option value="2">2.-Calculate Euclidian</option>
+									        <option value="3">3.-Calculate Minkowski</option>
+									        <option value="4">4.-Calculate Pearson</option>
+									        <option value="5">5.-Calculate Cosine similarity</option>
+									        <option value="6">6.-Calculate Jaccard</option>
+									    </select>
+							    		<h8 id = "" >Seleccione a que usuarios desea sacar la distancia</h8><br>
+									    <label >Usuario 1</label> <input type="text" name="usuario1" id="" >
+									    <br>
+									    <label >Usuario 2</label> <input type="text" name="usuario2" id="" >
+									    <br>					    	
+						    </div>
+						    <!--Recomendation -->   
+						    <div id= "Recomendacion" hidden="true">
+						    	<h8 >Con que distancia desea calcular la KNN</h8>
+							    <select name="knn_distancia" id="" class="custom-select">
+							    	<option value=""></option>
+							        <option value="1">1.-Calculate Manhattan</option>
+							        <option value="2">2.-Calculate Euclidian</option>
+							        <option value="3">3.-Calculate Minkowski</option>
+							        <option value="4">4.-Calculate Pearson</option>
+							        <option value="5">5.-Calculate Cosine similarity</option>
+							        <option value="6">6.-Calculate Jaccard</option>
+							    </select>
+							 
+							    
+							  
+							    <h8 >Selecciona el usuario</h8>
+							    			<input type="text" name="usuario" id=""><br>
+							    <h8>Seleccion el numero de vecinos</h8>
+							    			<input type="text" name="nvecinos" id=""><br>
+							    <h8>Seleccione el ID de la pelicula</h8>
+							    			<input type="text" name="ID_pelicula" id=""> 
+						    </div>
+							 <br>
+							 <br>
+							<center>
+								<button type="submit" class="btn btn-secondary btn-lg">Enviar</button>
+							</center>
+						</form>
+
+					</div>			
+				</div>
+			</dir>
+		
+
+		</div>	
+	</section>	
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Bienvenido<br>
 Que Base de Datos deseas hacer<br>
 <form>
@@ -33,6 +178,8 @@ Que Base de Datos deseas hacer<br>
     <br>
     <input type="text" name="usuario1" id="">
     <br>
+
+
     <!--Recomendation -->
     Con que distancia desea calcular la KNN<br>
     <select name="" id="">
