@@ -53,23 +53,13 @@ def preprocessing(path,prepath):
 #####
 
 ####distances#####
-def manhattan(x,y):
-    suma = 0
-    for i in range(len(x)):
-        #print(x[i],"elemento en x",y[i],"elemento en y")
-        suma += abs(float(x[i][0])-float(y[i][0]))
-        #print("suma:",suma)
-    return suma
+
 def euclidian(x,y):
     suma = 0
     for i in range(len(x)):
         suma += math.pow(float(x[i][0])-float(y[i][0]),2)
     return math.pow(suma,0.5)
-def minkowski(x,y,n):
-    suma = 0
-    for i in range(len(x)):
-        suma += math.pow(abs(float(x[i][0])-float(y[i][0])),n)
-    return(math.pow(suma,1/n))    
+   
 def pearson(x,y):
     my_x = []
     my_y = []
@@ -183,9 +173,11 @@ def knn(idusuario,number_neighbors,id_type_distance,rating):
             continue
         distances = np.append(distances,[[simple_distance(idusuario,i,id_type_distance,rating,noprint),i]],axis=0)
     if(id_type_distance>=1 and id_type_distance<4 or id_type_distance==6):
-        distances = distances[np.argsort(distances[:,0])]
+        loler=1
+        #distances = distances[np.argsort(distances[:,0])]
     elif(id_type_distance==4 or id_type_distance==5):
-        distances = distances[np.argsort(distances[:,0])[::-1][:distances.shape[0]]]
+        loler=1
+        #distances = distances[np.argsort(distances[:,0])[::-1][:distances.shape[0]]]
     print("The",number_neighbors,"best neighbors are: ",distances[:number_neighbors])
     return distances[:number_neighbors]
 #####

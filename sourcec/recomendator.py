@@ -115,7 +115,7 @@ def jaccard(x,y,n):
 
 ###Simple Distance
 # Takes the data rating for the users and keeps the intersected keys, that intersected keys is used to calculate the distances 
-def simple_distance(idusuario1,idusuario2,id_type_distance,all_rating_dictionary,print=True):
+def simple_distance(idusuario1,idusuario2,id_type_distance,all_rating_dictionary,print=False):
     aux_dict1=dict( ( movie[0],movie[1:]) for movie in all_rating_dictionary[idusuario1] )
     aux_dict2=dict( ( movie[0],movie[1:]) for movie in all_rating_dictionary[idusuario2] )
     keys_a = set( aux_dict1.keys() )
@@ -163,9 +163,13 @@ def knn(idusuario,number_neighbors,id_type_distance,rating):
         if(i == idusuario):
             continue
         distances = np.append(distances,[[simple_distance(idusuario,i,id_type_distance,rating,noprint),i]],axis=0)
+    print(id_type_distance,"asasd")
     if(id_type_distance>=1 and id_type_distance<4 or id_type_distance==6):
-        distances = distances[np.argsort(distances[:,0])]
+        print(id_type_distance,"entre1")
+        #distances = distances[np.argsort(distances[:,0])]
+        print(id_type_distance,"lohice?")
     elif(id_type_distance==4 or id_type_distance==5):
+        print(id_type_distance,"entre2")
         distances = distances[np.argsort(distances[:,0])[::-1][:distances.shape[0]]]
     print("The",number_neighbors,"best neighbors are: ",distances[:number_neighbors])
     return distances[:number_neighbors]
@@ -216,7 +220,7 @@ def load_bd_method2(path):
     rating = my_dict_rating.groupby('userId')[['movieId','rating']].apply(lambda g: g.values.tolist()).to_dict()
     return rating
 def recomendation(idusuario,number_neighbors,id_type_distance,id_item_search,rating):
-    neighbors = knn(id_user,id_neighbors,id_distance,rating)
+    neighbors = knn(id_user,id_neighbors,id_type_distance,rating)
     dict_user=dict( ( movie[0],movie[1:]) for movie in rating[idusuario] )
     neighbors_sum_total = sum(neighbors[:,0])
     print(neighbors_sum_total)
@@ -283,7 +287,7 @@ if(id_action==1):
     id_user1= int(input("user 1: "))
     id_user2= int(input("user 2: "))
     a = datetime.datetime.now()
-    simple_distance(id_user1,id_user2,id_distance,rating)
+    print(simple_distance(id_user1,id_user2,id_distance,rating))
     b = datetime.datetime.now()
     print("my time to find intersection and to calculate a simple distance: ",b-a)
 elif(id_action==2):
@@ -308,4 +312,3 @@ elif(id_action==2):
         id_item_search = int(input("Select the id: "))
     recomendation(id_user,id_neighbors,id_distance,id_item_search,rating)
     sys.exit("Implementing")
-
