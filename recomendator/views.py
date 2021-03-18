@@ -65,6 +65,12 @@ def jaccard(x,y,n):
         return float(n-len(x)) / n
     else:
         print("No existe ningun elemento similar")
+	
+def minkowski(x,y,n):
+    suma = 0
+    for i in range(len(x)):
+        suma += math.pow(abs(float(x[i][0])-float(y[i][0])),n)
+    return(math.pow(suma,1/n))
         
 def euclidian(x,y):
     suma = 0
