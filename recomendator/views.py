@@ -281,11 +281,13 @@ def Controlador_respuesta(request):
         a = datetime.datetime.now()
         rating = load_bd_method1(path)
         b = datetime.datetime.now()
+        #REQUEST b-a
         print("my time to load the bd with the method 1: ",b-a)
     elif(bd_method_id==2):
         a = datetime.datetime.now()
         rating = load_bd_method2(path)
         b = datetime.datetime.now()
+        #REQUEST b-a
         print("my time to load the bd with the method 2: ",b-a)
 
     #Distance or Recomendation
@@ -296,8 +298,10 @@ def Controlador_respuesta(request):
         id_user1= int(request.GET['usuario1'])
         id_user2= int(request.GET['usuario2'])
         a = datetime.datetime.now()
+        #REQUEST SIMPLE DISTANCE
         simple_distance(id_user1,id_user2,id_distance,rating,False)
         b = datetime.datetime.now()
+        #REQUEST b-a
         print("my time to find intersection and to calculate a simple distance: ",b-a)
     elif(id_action==2):
         #type of distance
@@ -306,6 +310,7 @@ def Controlador_respuesta(request):
         id_neighbors = int(request.GET['nvecinos'])
         #id of the movie
         id_item_search = int(request.GET['ID_pelicula'])
+        #REQUEST recomendation
         recomendation(id_user,id_neighbors,id_distance,id_item_search,rating)
     return render(request,'recomendator/Respuesta.html')
     
