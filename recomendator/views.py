@@ -71,7 +71,43 @@ def minkowski(x,y,n):
     for i in range(len(x)):
         suma += math.pow(abs(float(x[i][0])-float(y[i][0])),n)
     return(math.pow(suma,1/n))
-        
+def pearson(x,y):
+    my_x = []
+    my_y = []
+    for i in range(len(x)):
+        my_x.append(float(x[i][0]))
+        my_y.append(float(y[i][0]))
+    tam = len(my_x)
+    sum_x = sum(my_x)
+
+    sum_y = sum(my_y)
+    prod_xy = sum_xsum_y
+    x_pow = math.pow(sum_x,2)
+    y_pow = math.pow(sum_y,2)
+
+    list_powx = [math.pow(num,2) for num in my_x]
+    list_powy = [math.pow(num,2) for num in my_y]
+    list_powx = sum(list_powx)
+    list_powy = sum(list_powy)
+
+    mult_xy = []
+    for i in range(tam):
+        mult_xy.append(my_x[i]my_y[i])
+    mult_xy = sum(mult_xy)
+    #b = math.pow(list_powx-(x_pow/tam),0.5)
+    #c = list_powx-(x_pow/tam)
+    #d = list_powx
+    #d = x_pow
+    #e = tam
+    #print(d,e,"soy el error HOLA!!!!")
+    if(tam==0):
+        return 0.0
+    denominador = math.pow(list_powx-(x_pow/tam),0.5) * math.pow(list_powy-(y_pow/tam),0.5)
+    if(denominador==0):
+        return 0.0
+    resultado = (mult_xy - ((prod_xy)/tam))/ (math.pow(list_powx-(x_pow/tam),0.5) * math.pow(list_powy-(y_pow/tam),0.5))
+    return resultado
+
 def euclidian(x,y):
     suma = 0
     for i in range(len(x)):
