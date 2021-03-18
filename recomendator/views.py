@@ -53,6 +53,13 @@ def preprocessing(path,prepath):
 #####
 
 ####distances#####
+def manhattan(x,y):
+    suma = 0
+    for i in range(len(x)):
+        #print(x[i],"elemento en x",y[i],"elemento en y")
+        suma += abs(float(x[i][0])-float(y[i][0]))
+        #print("suma:",suma)
+    return suma
 
 def euclidian(x,y):
     suma = 0
