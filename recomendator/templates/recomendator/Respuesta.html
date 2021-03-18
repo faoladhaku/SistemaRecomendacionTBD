@@ -36,17 +36,25 @@
 {% block services %}
     <!--Contenedor Para poder Cargar Imagenes-->
     <section id="services">
-      <div class="container wow fadeIn">
-      	<br>
-      	<br>
-      	<div class="section-header">
-          	<h3 class="section-title">Respuesta</h3>
+        <div class="container wow fadeIn">
+        	<br>
+        	<br>
+        	<div class="section-header">
+            	<h3 class="section-title">Respuesta</h3>
 
-  		 </div>
-		<div class="box">
-			<h4 class="title"><i class="fa fa-camera"></i>&nbsp Resultado </h4>
-			<div class="drag-drop">
-		</div>
+       
+
+
+    		 </div>
+  		<div class="box">
+  			<h4 class="title"><i class="fa fa-camera"></i>&nbsp Resultado </h4>
+  			<div class="drag-drop">
+            <h8>Tiempo de carga : </h8><br>{{time_carga_bd}}<br>
+
+            <h8>Tiempo de resta :</h8> <br>{{distancia_time}}<br>
+
+            <h8>Distancia :</h8> <br>{{token}}<br>
+  		  </div>
       </div>
     </section>
 {% endblock %}

@@ -258,6 +258,14 @@ def recomendation(idusuario,number_neighbors,id_type_distance,id_item_search,rat
 def Controlador_respuesta(request):
     ###orquestor
 
+    ##variable
+    time_carga_bd = 0.0
+    distancia_time = 0.0
+    token =0.0
+    ###
+
+
+
     #Selecting database
     database_id = int(request.GET['DB'])
     if(database_id==1):
@@ -282,14 +290,18 @@ def Controlador_respuesta(request):
         rating = load_bd_method1(path)
         b = datetime.datetime.now()
         #REQUEST b-a
+
+        time_carga_bd = b-a
         print("my time to load the bd with the method 1: ",b-a)
     elif(bd_method_id==2):
         a = datetime.datetime.now()
         rating = load_bd_method2(path)
         b = datetime.datetime.now()
         #REQUEST b-a
+        time_carga_bd = b-a
         print("my time to load the bd with the method 2: ",b-a)
 
+  
     #Distance or Recomendation
     id_action = int(request.GET['Operacion'])
     if(id_action==1):
@@ -299,9 +311,11 @@ def Controlador_respuesta(request):
         id_user2= int(request.GET['usuario2'])
         a = datetime.datetime.now()
         #REQUEST SIMPLE DISTANCE
-        simple_distance(id_user1,id_user2,id_distance,rating,False)
+        token = simple_distance(id_user1,id_user2,id_distance,rating,False)
         b = datetime.datetime.now()
         #REQUEST b-a
+        distancia_time = b-a
+        
         print("my time to find intersection and to calculate a simple distance: ",b-a)
     elif(id_action==2):
         #type of distance
@@ -311,8 +325,13 @@ def Controlador_respuesta(request):
         #id of the movie
         id_item_search = int(request.GET['ID_pelicula'])
         #REQUEST recomendation
-        recomendation(id_user,id_neighbors,id_distance,id_item_search,rating)
-    return render(request,'recomendator/Respuesta.html')
+        token = recomendation(id_user,id_neighbors,id_distance,id_item_search,rating)
+
+
+    print(time_carga_bd)
+    print(distancia_time)
+    print(token)
+    return render(request,'recomendator/Respuesta.html',{"time_carga_bd":time_carga_bd,"distancia_time":distancia_time,"token":token })
     
 def test(request):
 	print(request.GET['DB']) #Seleccione la base de datos
