@@ -60,7 +60,12 @@ def manhattan(x,y):
         suma += abs(float(x[i][0])-float(y[i][0]))
         #print("suma:",suma)
     return suma
-
+def jaccard(x,y,n):
+    if(n!=0):
+        return float(n-len(x)) / n
+    else:
+        print("No existe ningun elemento similar")
+        
 def euclidian(x,y):
     suma = 0
     for i in range(len(x)):
