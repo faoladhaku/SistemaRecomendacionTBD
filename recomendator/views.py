@@ -92,7 +92,7 @@ def pearson(x,y):
 
     mult_xy = []
     for i in range(tam):
-        mult_xy.append(my_x[i]my_y[i])
+        mult_xy.append(my_x[i]*my_y[i])
     mult_xy = sum(mult_xy)
     #b = math.pow(list_powx-(x_pow/tam),0.5)
     #c = list_powx-(x_pow/tam)
